@@ -133,4 +133,4 @@ FFT bins mapped to MIDI note numbers → pitch class mod 12. Each of the 12 clas
 
 ## 📄 License
 
-MIT © 2026 Gianluca
+MIT © 2026 Gianluca Stefanelli
