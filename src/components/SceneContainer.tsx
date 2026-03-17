@@ -1,35 +1,18 @@
+import React from 'react';
 import { Scene } from 'reactylon';
+
 import { Engine } from 'reactylon/web';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
-import AudioProvider from './AudioProvider';
-import Visualizer from './Visualizer';
+import FractalMesh, { FractalMeshProps } from './FractalMesh';
 
-interface SceneContainerProps {
-  audioUrl: string | null;
-}
+type SceneContainerProps = Omit<FractalMeshProps, never>;
 
-const SceneContainer: React.FC<SceneContainerProps> = ({ audioUrl }) => {
+const SceneContainer: React.FC<SceneContainerProps> = (props) => {
   return (
     <Engine engineOptions={{ antialias: true, adaptToDeviceRatio: true }} canvasId="reactylon-canvas">
       <Scene>
-        <freeCamera
-          name="camera1"
-          position={new Vector3(0, 5, -15)}
-          lockedTarget={new Vector3(0, 0, 0)}
-        />
-        <hemisphericLight
-          name="light1"
-          intensity={0.7}
-          direction={new Vector3(0, 1, 0)}
-        />
-        <directionalLight 
-           name="dirLight" 
-           direction={new Vector3(-1, -2, -1)} 
-           intensity={0.5} 
-           position={new Vector3(20, 40, 20)} 
-        />
-        
-          <Visualizer />
+        <freeCamera name="camera1" position={new Vector3(0, 0, -5)} lockedTarget={new Vector3(0, 0, 0)} />
+        <FractalMesh {...props} />
       </Scene>
     </Engine>
   );
